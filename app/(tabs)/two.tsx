@@ -3,9 +3,11 @@ import { StyleSheet } from "react-native";
 
 import { Text, View } from "../../components/Themed";
 import { getData, storeData } from '../../lib/localStore';
+import { usePrimaryKey } from '../../lib/primaryKey';
 
 export default function TabTwoScreen() {
   const [ key, setKey] = useState(0);
+  const primaryKey = usePrimaryKey();
 
   useEffect(() => {
     (async () => {
@@ -30,6 +32,7 @@ export default function TabTwoScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <Text style={styles.title}>Key: {key}</Text>
+      <Text style={styles.title}>Primary: {primaryKey}</Text>
     </View>
   );
 }
