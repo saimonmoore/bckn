@@ -1,9 +1,26 @@
+import { useEffect, useState } from 'react';
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
+import { getData, storeData } from '../../lib/localStore';
 
 export default function TabTwoScreen() {
+  const [ key, setKey] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+        let storedKey = await getData('key');
+
+        if (!storedKey) {
+          const newKey = Math.round(Math.random() * 100);
+          storedKey = newKey.toString();
+          await storeData('key', storedKey);
+        }
+
+        setKey(parseInt(storedKey, 10));
+      })();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Settings</Text>
@@ -12,7 +29,7 @@ export default function TabTwoScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <Text style={styles.title}>Key: {key}</Text>
     </View>
   );
 }
