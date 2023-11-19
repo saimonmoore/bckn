@@ -34,6 +34,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3f2ab7d8-2d5a-475d-b560-ee7e7b5d8b1e"
+      }
+    },
+    "owner": "excsm"
   }
 }
